@@ -1,6 +1,6 @@
 import time
-
 import requests
+
 from environs import Env
 
 # Считываем переменные окружения с файла '.env'
