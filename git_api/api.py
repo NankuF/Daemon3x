@@ -1,3 +1,5 @@
+import time
+
 import requests
 from environs import Env
 
@@ -16,24 +18,22 @@ class CheckUpdate:
         self.token = token
         self.update_at = update_at
 
-    def get_repo(self):
+    def get_update_repo(self):
         repos = requests.get('https://api.github.com/user/repos',
                              auth=(self.username, self.token))
         for repo in repos.json():
             if repo['name'] == 'Moscow_stations':
                 self.update_at = repo['updated_at']
 
-    def update_repo(self):
         if self.update_at > self.start_date:
-            print('DOWNLOAD repository...')
             self.start_date = self.update_at
+            print('DOWNLOAD repository...')
         else:
-            print(self.update_at)
-            print('anyone')
+            print(f'Обновление не требуется, {self.update_at} == {self.start_date}')
 
 
 # создаем инстанс класса с заведомо старым апдейтом
 moscow = CheckUpdate(username=username, token=token)
-moscow.update_repo()  # проверяем что он реально старый
-moscow.get_repo()  # скачиваем инфу по апдейту с репозитория
-moscow.update_repo()  # удостоверяемся что обновилось
+while 1:
+    time.sleep(3)
+    moscow.get_update_repo()  # скачиваем инфу по апдейту с репозитория
