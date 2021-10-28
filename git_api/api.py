@@ -2,6 +2,7 @@ import time
 import requests
 
 from environs import Env
+from scripts.download_repo import Git
 
 # Считываем переменные окружения с файла '.env'
 env = Env()
@@ -28,12 +29,17 @@ class CheckUpdate:
         if self.update_at > self.__start_date:
             self.__start_date = self.update_at
             print('DOWNLOAD repository...')
+            git = Git('/home/nanku/PycharmProjects/Daemon3x/')
+            git.command(pull=1)
+
         else:
             print(f'Обновление не требуется, {self.update_at} == {self.__start_date}')
 
 
-# создаем инстанс класса с заведомо старым апдейтом
-moscow = CheckUpdate(username=username, token=token)
-while 1:
-    time.sleep(3)
-    moscow.get_update_repo()  # скачиваем инфу по апдейту с репозитория
+if __name__ == '__main__':
+
+    # создаем инстанс класса с заведомо старым апдейтом
+    moscow = CheckUpdate(username=username, token=token)
+    while 1:
+        time.sleep(5)
+        moscow.get_update_repo()  # скачиваем инфу по апдейту с репозитория
