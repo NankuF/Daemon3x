@@ -1,6 +1,6 @@
 import subprocess
 
-s = 'test'
+s = 'tessst'
 class Git:
     """Интерфейс для команд git
     cwd - directory with git repository"""
