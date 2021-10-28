@@ -27,13 +27,14 @@ class CheckUpdate:
                 self.update_at = repo['updated_at']
 
         if self.update_at > self.__start_date:
-            self.__start_date = self.update_at
             print('DOWNLOAD repository...')
             git = Git('/home/nanku/PycharmProjects/Daemon3x/')
             git.command(pull=1)
+            self.__start_date = self.update_at
 
         else:
             print(f'Обновление не требуется, {self.update_at} == {self.__start_date}')
+        print('Конец цикла')
 
 
 if __name__ == '__main__':
