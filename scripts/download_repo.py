@@ -98,6 +98,7 @@ class Git:
             answer = input('Хотите сделать git add? [Y/n]: ').lower()
             if answer == 'y':
                 self.git_add()
+                print('Локальный репозиторий')
             else:
                 print('END')
 
