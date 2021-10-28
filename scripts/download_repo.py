@@ -26,10 +26,14 @@ for file in cleaned_data:
     process = subprocess.Popen(['git', 'commit', '-am', 'test commit'], stdout=subprocess.PIPE, cwd=cwd)
     data = process.communicate()
 
-
-git_status = ['git', 'status']
-process = subprocess.Popen(git_status, stdout=subprocess.PIPE, cwd=cwd)
+process = subprocess.Popen(['git', 'push'], stdout=subprocess.PIPE, cwd=cwd)
 data = process.communicate()
-# decode bytes in utf-8
 data_utf_8: str = data[0].decode('utf-8')
 print(data_utf_8)
+# Проверка результата
+# git_status = ['git', 'status']
+# process = subprocess.Popen(git_status, stdout=subprocess.PIPE, cwd=cwd)
+# data = process.communicate()
+# # decode bytes in utf-8
+# data_utf_8: str = data[0].decode('utf-8')
+# print(data_utf_8)
