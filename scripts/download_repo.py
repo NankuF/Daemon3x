@@ -77,6 +77,11 @@ class Git:
         result = self.process(args)
         print(result)
 
+    def git_push(self):
+        args = ['git', 'push']
+        result = self.process(args)
+        print(result)
+
     def check_add(self):
         """Получаем список файлов для git add"""
         self.command(status=1)
@@ -99,7 +104,8 @@ class Git:
             answer = input('Хотите сделать git add? [Y/n]: ').lower()
             if answer == 'y':
                 self.git_add()
-                print('Локальный репозиторий')
+                self.git_push()
+
             else:
                 print('END')
 
