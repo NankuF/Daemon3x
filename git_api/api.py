@@ -23,7 +23,7 @@ class CheckUpdate:
         repos = requests.get('https://api.github.com/user/repos',
                              auth=(self.username, self.token))
         for repo in repos.json():
-            if repo['name'] == 'Moscow_stations':
+            if repo['name'] == 'Daemon3x':
                 self.update_at = repo['updated_at']
 
         if self.update_at > self.__start_date:
