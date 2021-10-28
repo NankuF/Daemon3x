@@ -11,9 +11,9 @@ token = env('GITHUB_TOKEN')
 
 
 class CheckUpdate:
-    start_date = '1970-01-01T00:00:00Z'
+    __start_date = '1970-01-01T00:00:00Z'
 
-    def __init__(self, username, token, update_at=start_date):
+    def __init__(self, username, token, update_at=__start_date):
         self.username = username
         self.token = token
         self.update_at = update_at
@@ -25,11 +25,11 @@ class CheckUpdate:
             if repo['name'] == 'Moscow_stations':
                 self.update_at = repo['updated_at']
 
-        if self.update_at > self.start_date:
-            self.start_date = self.update_at
+        if self.update_at > self.__start_date:
+            self.__start_date = self.update_at
             print('DOWNLOAD repository...')
         else:
-            print(f'Обновление не требуется, {self.update_at} == {self.start_date}')
+            print(f'Обновление не требуется, {self.update_at} == {self.__start_date}')
 
 
 # создаем инстанс класса с заведомо старым апдейтом
