@@ -74,7 +74,8 @@ class Git:
     def git_add(self):
         """Делает add всех файлов и записывает коммит с сообщением"""
         args = ['git', 'commit', '-am', 'autocommit']
-        self.process(args)
+        result = self.process(args)
+        print(result)
 
     def check_add(self):
         """Получаем список файлов для git add"""
