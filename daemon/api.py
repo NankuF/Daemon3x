@@ -31,9 +31,6 @@ class CheckUpdate:
             git = Git('/home/nanku/PycharmProjects/Daemon3x/')
             # git.command(pull=1)
             # self.__start_date = self.update_at
-            # git = Git(cwd='/home/nanku/PycharmProjects/Daemon3x/')
-            # # git.command(pull=0, status=1)
-            # git.auto_add_and_push()
 
         else:
             print(f'Обновление не требуется, {self.update_at} == {self.__start_date}')

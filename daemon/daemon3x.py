@@ -1,4 +1,4 @@
-"""Generic linux daemon base class for python 3.x."""
+"""Generic linux dd base class for python 3.x."""
 
 import atexit
 import os
@@ -8,9 +8,9 @@ import time
 
 
 class Daemon:
-    """A generic daemon class.
+    """A generic dd class.
 
-    Usage: subclass the daemon class and override the run() method."""
+    Usage: subclass the dd class and override the run() method."""
 
     def __init__(self, pidfile):
         self.pidfile = pidfile
@@ -50,13 +50,13 @@ class Daemon:
         # показывать сразу в терминал, без буферизации(т.е без задержки)
         sys.stdout.flush()
         sys.stderr.flush()
-        si = open(os.devnull, 'r')
-        so = open(os.devnull, 'a+')
-        se = open(os.devnull, 'a+')
+        # si = open(os.devnull, 'r')
+        # so = open(os.devnull, 'a+')
+        # se = open(os.devnull, 'a+')
         # делаем дубликат дескриптора. dup2(fd,fd2)
-        os.dup2(si.fileno(), sys.stdin.fileno())
-        os.dup2(so.fileno(), sys.stdout.fileno())
-        os.dup2(se.fileno(), sys.stderr.fileno())
+        # os.dup2(si.fileno(), sys.stdin.fileno())
+        # os.dup2(so.fileno(), sys.stdout.fileno())
+        # os.dup2(se.fileno(), sys.stderr.fileno())
 
         # write pidfile
         # регистрируем функцию, которая будет выполняться при нормальном завершении программы
@@ -71,9 +71,9 @@ class Daemon:
         os.remove(self.pidfile)
 
     def start(self):
-        """Start the daemon."""
+        """Start the dd."""
 
-        # Check for a pidfile to see if the daemon already runs
+        # Check for a pidfile to see if the dd already runs
         try:
             with open(self.pidfile, 'r') as pf:
                 pid = int(pf.read().strip())
@@ -86,12 +86,12 @@ class Daemon:
             sys.stderr.write(message.format(self.pidfile))
             sys.exit(1)
 
-        # Start the daemon
+        # Start the dd
         self.daemonize()
         self.run()
 
     def stop(self):
-        """Stop the daemon."""
+        """Stop the dd."""
 
         # Get the pid from the pidfile
         try:
@@ -106,7 +106,7 @@ class Daemon:
             sys.stderr.write(message.format(self.pidfile))
             return  # not an error in a restart
 
-        # Try killing the daemon process
+        # Try killing the dd process
         try:
             while 1:
                 os.kill(pid, signal.SIGTERM)
@@ -120,8 +120,10 @@ class Daemon:
                 print(str(err.args))
                 sys.exit(1)
 
+        print('IM STOP!')
+
     def restart(self):
-        """Restart the daemon."""
+        """Restart the dd."""
         self.stop()
         self.start()
 
