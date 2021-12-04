@@ -41,5 +41,5 @@ if __name__ == '__main__':
     # создаем инстанс класса с заведомо старым апдейтом
     moscow = CheckUpdate(username=username, token=token)
     while 1:
-        time.sleep(5)
+        time.sleep(1)
         moscow.get_update_repo()  # скачиваем инфу по апдейту с репозитория
