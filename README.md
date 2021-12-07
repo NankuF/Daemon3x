@@ -5,8 +5,9 @@ daemon3x.py - демон с гугла под Линукс, адаптирова
 mydaemon.py - класс-наследник для запуска демона.  
 api.py - используется для коннекта к гиту и проверки обновления.  
 download_repo.py - вызывается внутри api.py, содержит основные методы: status, add, push, pull  
-#Запуск демона:
-###API
+
+# Запуск демона:  
+### API
 1. Делаем personal access token - https://github.com/settings/tokens (repo, user)
 2. Делаем файл '.env' и добавляем его в .gitignore (т.к его не нужно загружать в гит)
 3. в .env размещаем  
